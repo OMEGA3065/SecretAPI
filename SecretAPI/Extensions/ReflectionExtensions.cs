@@ -11,6 +11,8 @@ using HarmonyLib;
 /// </summary>
 public static class ReflectionExtensions
 {
+    private static readonly Dictionary<(Type, MethodInfo), string> CachedLongFuncNames = new();
+
     /// <summary>
     /// Casts an object into <typeparamref name="T"/>.
     /// This will throw an exception if <paramref name="source"/> is not of type <typeparamref name="T"/>.
@@ -56,7 +58,12 @@ public static class ReflectionExtensions
     /// <returns>The long function name.</returns>
     public static string GetLongFuncName(Type type, MethodInfo method)
     {
-        return $"{method.ReturnType.FullName} {type.FullName}::{method.Name}({string.Join(",", method.GetParameters().Select(x => x.ParameterType.FullName))})";
+        if (CachedLongFuncNames.TryGetValue((type, method), out string? longFunc))
+            return longFunc;
+
+        longFunc = $"{method.ReturnType.FullName} {type.FullName}::{method.Name}({string.Join(",", method.GetParameters().Select(x => x.ParameterType.FullName))})";
+        CachedLongFuncNames.Add((type, method), longFunc);
+        return longFunc;
     }
 
     /// <summary>
