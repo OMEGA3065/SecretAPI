@@ -2,6 +2,7 @@
 
 using HarmonyLib;
 using InventorySystem.Configs;
+using InventorySystem.Items;
 using SecretAPI.Attributes;
 using SecretAPI.Examples.Settings;
 

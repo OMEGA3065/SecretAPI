@@ -38,7 +38,7 @@ public static class Scp914Extensions
         if (item == null)
             return;
 
-        IScp914ItemProcessor? processor = Scp914.GetItemProcessor(item.Type);
+        IScp914ItemProcessor? processor = Scp914Room.GetItemProcessor(item.Type);
         processor?.UpgradeItem(setting, item);
     }
 }

@@ -5,6 +5,7 @@ using Decals;
 using InventorySystem.Items;
 using InventorySystem.Items.Autosync;
 using InventorySystem.Items.Firearms.Modules;
+using InventorySystem.Items.Identifiers;
 using Mirror;
 using RelativePositioning;
 using UnityEngine;

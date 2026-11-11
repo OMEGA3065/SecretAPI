@@ -1,6 +1,7 @@
 ﻿namespace SecretAPI.Examples.Settings;
 
 using System.Collections.Generic;
+using InventorySystem.Items;
 using LabApi.Features.Wrappers;
 using MEC;
 using Mirror;
@@ -60,11 +61,11 @@ public class ExampleFakeSyncButton : CustomButtonSetting
             },
         });
 
-        TextToy textToy = TextToy.Create(KnownOwner.Position, KnownOwner.Rotation);
+        TextToy textToy = TextToy.Create(KnownOwner.Position, KnownOwner.Rotation)!;
         textToy.TextFormat = "{0}";
         textToy.Arguments.Add("Default Text!");
 
-        CapybaraToy capybaraToy = CapybaraToy.Create(KnownOwner.Position + new Vector3(0, 1, 0), KnownOwner.Rotation);
+        CapybaraToy capybaraToy = CapybaraToy.Create(KnownOwner.Position + new Vector3(0, 1, 0), KnownOwner.Rotation)!;
         capybaraToy.Base.NetworkCollisionsEnabled = true;
 
         Timing.CallDelayed(5, () =>

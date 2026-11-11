@@ -1,5 +1,7 @@
 namespace SecretAPI.Extensions.AdminToys;
 
+using System;
+using System.ComponentModel;
 using global::AdminToys;
 using UnityEngine;
 using PrimitiveObjectToy = LabApi.Features.Wrappers.PrimitiveObjectToy;
@@ -56,9 +58,30 @@ public static partial class AdminToyExtensions
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>The modified <see cref="PrimitiveObjectToy"/>.</returns>
-        public PrimitiveObjectToy WithType(PrimitiveType type)
+        public PrimitiveObjectToy WithType(PrimitiveToyType type)
         {
             toy.Type = type;
+            return toy;
+        }
+
+        /// <summary>
+        /// Modify the type of this <see cref="PrimitiveObjectToy"/>.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The modified <see cref="PrimitiveObjectToy"/>.</returns>
+        [Obsolete("Use ::WithType(PrimitiveToyType) instead.")]
+        public PrimitiveObjectToy WithType(PrimitiveType type)
+        {
+            toy.Type = type switch
+            {
+                PrimitiveType.Sphere => PrimitiveToyType.Sphere,
+                PrimitiveType.Capsule => PrimitiveToyType.Capsule,
+                PrimitiveType.Cylinder => PrimitiveToyType.Cylinder,
+                PrimitiveType.Cube => PrimitiveToyType.Cube,
+                PrimitiveType.Plane => PrimitiveToyType.Plane,
+                PrimitiveType.Quad => PrimitiveToyType.Quad,
+                _ => (PrimitiveToyType)type,
+            };
             return toy;
         }
 
